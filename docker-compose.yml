@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    build:
+      context: server
+      dockerfile: Dockerfile
+    command: npm start # expecting bind port to 3000
+  ...
+  lt:
+    build:
+      context: lt # folder you created earlier with the Dockefile-lt inside
+      dockerfile: Dockerfile-lt
+    command: "usr/local/bin/lt --port 6000 --host https://lt.ibusocials.com
+    depends_on:
+      - web
